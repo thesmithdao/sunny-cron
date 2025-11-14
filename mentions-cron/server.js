@@ -12,7 +12,7 @@ if (!SUNNY_AGENT_URL)
 
 app.post("/", async (req, res) => {
   try {
-    const url = `${SUNNY_AGENT_URL}/api/engagement`;
+    const url = `${SUNNY_AGENT_URL}/api/mentions`;
     const resp = await fetch(url, {
       method: "POST",
       headers: {
@@ -23,12 +23,12 @@ app.post("/", async (req, res) => {
     });
 
     const text = await resp.text();
-    console.log(`/api/engagement ->`, resp.status, text);
+    console.log(`/api/mentions ->`, resp.status, text);
     return res
       .status(200)
       .json({ success: true, status: resp.status, body: text });
   } catch (err) {
-    console.error("Error triggering /api/engagement:", err);
+    console.error("Error triggering /api/mentions:", err);
     return res.status(500).json({ success: false, error: String(err) });
   }
 });
@@ -36,5 +36,5 @@ app.post("/", async (req, res) => {
 app.get("/health", (req, res) => res.json({ status: "ok" }));
 
 app.listen(port, () =>
-  console.log(`engagement-cron trigger listening on ${port}`)
+  console.log(`mentions-cron trigger listening on ${port}`)
 );

@@ -3,9 +3,8 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.post("/", async (req: Request, res: Response) => {
-  // TODO: Call sunny-agent /api/discovery endpoint here
   console.log("Triggering sunny-agent discovery endpoint...");
-  // Example: Use fetch or axios to POST to sunny-agent
+  // No-op: runtime uses the compiled JS `server.js` which performs the POST.
   res.json({ success: true, message: "Discovery cron triggered!" });
 });
 
